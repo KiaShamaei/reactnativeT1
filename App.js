@@ -11,6 +11,7 @@ import {
 import Header from './components/Header';
 import uuid from 'react-native-uuid';
 import { ListItem } from './components/ListItem';
+import { AddItem } from './components/AddItem';
 
 
 
@@ -30,9 +31,15 @@ const App = ()=>{
 		})
 
 	}
+	const addItems = (itemText)=>{
+		setItems(prev =>{
+			return [{id : uuid.v4() , text : itemText},...prev ]
+		})
+	}
 	return (
 		<View style={styles.container}>
 			<Header title={'this is shopping list from app'}/>
+			<AddItem addItems={addItems}/>
 			<FlatList 
 			data={items}
 			renderItem={renderOpt}
