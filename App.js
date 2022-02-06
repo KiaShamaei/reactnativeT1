@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native';
 import Header from './components/Header';
 import uuid from 'react-native-uuid';
@@ -32,9 +33,14 @@ const App = ()=>{
 
 	}
 	const addItems = (itemText)=>{
-		setItems(prev =>{
-			return [{id : uuid.v4() , text : itemText},...prev ]
-		})
+		if(!itemText){
+			Alert.alert('Error' , 'please Enter item name' , [{text:'ok'}])
+		}else{
+			setItems(prev =>{
+				return [{id : uuid.v4() , text : itemText},...prev ]
+			})
+		}
+		
 	}
 	return (
 		<View style={styles.container}>
